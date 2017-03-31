@@ -1,0 +1,32 @@
+<?php
+/**
+* Implements hook_block_info().
+*/
+function title_page_block_info() {
+    $blocks['title_page'] = array(
+    // The name that will appear in the block list.
+      'info' => t('Page title'),
+    // Default setting.
+       'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+function title_page_block_view($delta='') {
+  $block = array();
+    switch($delta) {
+        case 'title_page' :
+        $block['content'] = title_view();
+        //$block['content'] = "ici text";
+        break;
+    }
+  return $block;
+}
+
+function title_view(){
+    return "<div class='page-title'>".drupal_get_title()."</div>";
+    var_dump(drupal_get_title(),"title");
+}
